@@ -1,0 +1,27 @@
+#!/bin/sh
+
+clear
+
+el=$@
+
+if test -n "$el"; then
+  echo $el >> ~/stack.txt
+fi
+
+idx=0
+last=$(cat ~/stack.txt | tail -n 1)
+cat ~/stack.txt | tail -n 8 | while read ln; do
+  sym="└──"
+  indent=" "
+
+  for i in $(seq 1 $idx); do
+    indent=" $indent"
+  done
+
+  if [ "$ln" = "$last" ]; then
+    sym="\033[0;31m$sym\033[0m"
+  fi
+  echo "$indent $sym $ln"
+
+  idx=$((idx+4))
+done

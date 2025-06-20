@@ -1,0 +1,3 @@
+#!/bin/sh
+
+head -n -1 ~/stack.txt > ~/tmp.txt; mv ~/tmp.txt ~/stack.txt
