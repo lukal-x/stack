@@ -1,12 +1,15 @@
 #!/bin/sh
 
 clear
+SCOPE=$(cat $HOME/.role.txt 2>/dev/null)
+echo "$SCOPE\n"
 
 el=$@
-filename="$HOME/stack.txt"
+filename="$HOME/$SCOPE.stack.txt"; touch $filename
+identity=$(cat /dev/urandom | head -c 3 | base64)
 
 if test -n "$el"; then
-  echo $el >> $filename
+  echo "$el ($identity)" >> $filename
 fi
 
 idx=0

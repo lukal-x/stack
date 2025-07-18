@@ -1,0 +1,17 @@
+#!/bin/sh
+
+current=$(cat $HOME/.role.txt 2>/dev/null)
+
+line=$(grep -n $current $HOME/.roles.txt | cut --fields=1 -d:)
+total=$(wc -l $HOME/.roles.txt | cut --fields=1 -d ' ')
+
+if $(test $line = $total); then
+    line=1
+else
+    line=$((line + 1))
+fi
+
+new=$(head -n $line $HOME/.roles.txt | tail -1)
+
+echo "Switching to $new"
+echo "$new" > $HOME/.role.txt

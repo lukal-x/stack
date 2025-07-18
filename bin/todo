@@ -1,0 +1,12 @@
+#!/bin/sh
+
+SCOPE=$(cat $HOME/.role.txt 2>/dev/null)
+echo "$SCOPE\n"
+
+el=$@
+
+identity=$(cat /dev/urandom | head -c 3 | base64)
+filename="$HOME/$SCOPE.stack.txt"
+
+(echo "$el ($identity)"; cat $filename;) > ~/tmp.txt
+mv ~/tmp.txt $filename
