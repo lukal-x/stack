@@ -3,14 +3,15 @@
 clear
 
 el=$@
+filename="$HOME/stack.txt"
 
 if test -n "$el"; then
-  echo $el >> ~/stack.txt
+  echo $el >> $filename
 fi
 
 idx=0
-last=$(cat ~/stack.txt | tail -n 1)
-cat ~/stack.txt | tail -n 8 | while read ln; do
+last=$(cat $filename | tail -n 1)
+cat $filename | tail -n 8 | while read ln; do
   sym="└──"
   indent=" "
 
