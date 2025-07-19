@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SCOPE=$(cat $HOME/.role.txt 2>/dev/null)
+SCOPE=$(cat $HOME/.role.txt 2>/dev/null | cut -f1 -d ' ')
 
 filename="$HOME/$SCOPE.stack.txt"
 head -n -1 $filename > ~/tmp.txt; mv ~/tmp.txt $filename

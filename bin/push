@@ -1,7 +1,7 @@
 #!/bin/sh
 
 clear
-SCOPE=$(cat $HOME/.role.txt 2>/dev/null)
+SCOPE=$(cat $HOME/.role.txt 2>/dev/null | cut -f1 -d ' ')
 echo "$SCOPE\n"
 
 el=$@
