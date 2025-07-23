@@ -12,6 +12,11 @@ if test -n "$el"; then
   echo "$el ($identity)" >> $filename
 fi
 
+size=$(wc -l $filename | cut -f1 -d ' ')
+
+wmctrl -n $size 2>/dev/null
+xdotool set_desktop $(($size - 1)) 2>/dev/null
+
 idx=0
 last=$(cat $filename | tail -n 1)
 cat $filename | tail -n 8 | while read ln; do
