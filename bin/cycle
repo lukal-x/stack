@@ -1,9 +1,9 @@
 #!/bin/sh
 
-current=$(cat $HOME/.role.txt 2>/dev/null | cut -f1 -d ' ')
+current=$(cat $HOME/.reminder.txt 2>/dev/null | cut -f1 -d ' ')
 
-line=$(grep -n $current $HOME/.roles.txt | cut --fields=1 -d:)
-total=$(wc -l $HOME/.roles.txt | cut --fields=1 -d ' ')
+line=$(grep -n $current $HOME/.reminders.txt | cut --fields=1 -d:)
+total=$(wc -l $HOME/.reminders.txt | cut --fields=1 -d ' ')
 
 if $(test $line = $total); then
     line=1
@@ -11,7 +11,7 @@ else
     line=$((line + 1))
 fi
 
-new=$(head -n $line $HOME/.roles.txt | tail -1)
+new=$(head -n $line $HOME/.reminders.txt | tail -1)
 
 echo "Switching to $new"
-echo "$new" > $HOME/.role.txt
+echo "$new" > $HOME/.reminder.txt

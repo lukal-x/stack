@@ -1,12 +1,9 @@
 #!/bin/sh
 
-SCOPE=$(cat $HOME/.role.txt 2>/dev/null | cut -f1 -d ' ')
-echo "$SCOPE\n"
-
 el=$@
 
 identity=$(cat /dev/urandom | head -c 3 | base64)
-filename="$HOME/$SCOPE.stack.txt"
+filename="$HOME/.stack.txt"
 
 (echo "$el ($identity)"; cat $filename;) > ~/tmp.txt
 mv ~/tmp.txt $filename
