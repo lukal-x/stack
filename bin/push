@@ -3,11 +3,16 @@
 clear
 
 el=$@
-filename="$HOME/.stack.txt"; touch $filename
-identity=$(cat /dev/urandom | head -c 3 | base64)
+
+loc=$HOME
+if test -f .stack.txt; then
+  loc=$PWD
+fi
+
+filename="$loc/.stack.txt"
 
 if test -n "$el"; then
-  echo "$el ($identity)" >> $filename
+  echo $el >> $filename
 fi
 
 size=$(wc -l $filename | cut -f1 -d ' ')

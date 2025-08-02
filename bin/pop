@@ -1,4 +1,10 @@
 #!/bin/sh
 
-filename="$HOME/.stack.txt"
+loc=$HOME
+if test -f .stack.txt; then
+    loc=$PWD
+fi
+
+filename="$loc/.stack.txt"
+
 head -n -1 $filename > ~/tmp.txt; mv ~/tmp.txt $filename

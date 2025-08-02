@@ -2,8 +2,12 @@
 
 el=$@
 
-identity=$(cat /dev/urandom | head -c 3 | base64)
-filename="$HOME/.stack.txt"
+loc=$HOME
+if test -f .stack.txt; then
+  loc=$PWD
+fi
 
-(echo "$el ($identity)"; cat $filename;) > ~/tmp.txt
+filename="$loc/.stack.txt"
+
+(echo $el; cat $filename;) > ~/tmp.txt
 mv ~/tmp.txt $filename
