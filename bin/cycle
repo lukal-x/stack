@@ -2,7 +2,7 @@
 
 current=$(cat $HOME/.reminder.txt 2>/dev/null | cut -f1 -d ' ')
 
-line=$(grep -n $current $HOME/.reminders.txt | cut --fields=1 -d:)
+line=$(grep -n $current $HOME/.reminders.txt | head -n 1 | cut --fields=1 -d:)
 total=$(wc -l $HOME/.reminders.txt | cut --fields=1 -d ' ')
 
 if $(test $line = $total); then
